@@ -6,7 +6,12 @@ import Documento from "../modelos/documento";
 import { TipoDocumento } from "../enumeracoes/tipoDocumento";
 import Entrada from './entrada';
 
-const entrada = new Entrada()
+const entrada = new Entrada();
+
+function converterData(dataString: string): Date {
+    const [dia, mes, ano] = dataString.split('/').map(Number);
+    return new Date(ano, mes - 1, dia); 
+}
 
 // Função para criar um cliente com dados fornecidos pelo usuário
 function criarCliente(): Cliente {
@@ -14,7 +19,7 @@ function criarCliente(): Cliente {
     cliente.nome = readlineSync.question('Digite o nome do cliente: ');
     cliente.nomeSocial = readlineSync.question('Digite o nome social do cliente: ');
     cliente.dataCadastro = new Date();
-    cliente.dataNascimento = new Date(readlineSync.question('Digite a data de nascimento do cliente (yyyy-mm-dd): '));
+    cliente.dataNascimento = converterData(readlineSync.question('Digite a data de nascimento do cliente (dd/mm/yyyy): '));
 
     // Endereço do cliente
     let endereco = new Endereco();
@@ -37,12 +42,28 @@ function criarCliente(): Cliente {
         cliente.telefones.push(telefone);
     }
 
-    // Documento do cliente
+    // Cadastro de um documento
+    console.log(`Cadastro do Documento`);
     let documento = new Documento();
-    documento.numero = readlineSync.question('Digite o número do documento do cliente: ');
-    let tipoDoc = entrada.receberNumero('Digite o tipo de documento (1 - RG, 2 - CPF): ');
-    documento.tipo = tipoDoc === 1 ? TipoDocumento.RG : TipoDocumento.CPF;
-    documento.dataExpedicao = new Date(readlineSync.question('Digite a data de expedição do documento (yyyy-mm-dd): '));
+    documento.numero = readlineSync.question('Digite o número do documento: ');
+    let tipoDoc = entrada.receberNumero('Digite o tipo de documento (1 - RG, 2 - CPF, 3 - Passaporte): ');
+    
+    switch (tipoDoc) {
+        case 1:
+            documento.tipo = TipoDocumento.RG;
+            break;
+        case 2:
+            documento.tipo = TipoDocumento.CPF;
+            break;
+        case 3:
+            documento.tipo = TipoDocumento.PASSAPORTE;
+            break;
+        default:
+            console.log('Tipo de documento inválido.');
+            break;
+    }
+
+    documento.dataExpedicao = converterData(readlineSync.question('Digite a data de expedição do documento (dd/mm/yyyy): '));
     cliente.documentos.push(documento);
 
     return cliente;
@@ -54,19 +75,34 @@ function criarDependente(): Cliente {
     dependente.nome = readlineSync.question('Digite o nome do dependente: ');
     dependente.nomeSocial = readlineSync.question('Digite o nome social do dependente: ');
     dependente.dataCadastro = new Date();
-    dependente.dataNascimento = new Date(readlineSync.question('Digite a data de nascimento do dependente (yyyy-mm-dd): '));
+    dependente.dataNascimento = converterData(readlineSync.question('Digite a data de nascimento do dependente (dd/mm/yyyy): '));
 
     // Documento do dependente
     let documento = new Documento();
     documento.numero = readlineSync.question('Digite o número do documento do dependente: ');
-    let tipoDoc = readlineSync.question('Digite o tipo de documento (1 - RG, 2 - CPF): ');
+    let tipoDoc = readlineSync.question('Digite o tipo de documento (1 - RG, 2 - CPF, 3 - Passaporte): ');
     
-    documento.tipo = tipoDoc === '1' ? TipoDocumento.RG : TipoDocumento.CPF;
-    documento.dataExpedicao = new Date(readlineSync.question('Digite a data de expedição do documento (yyyy-mm-dd): '));
+    switch (tipoDoc) {
+        case '1':
+            documento.tipo = TipoDocumento.RG;
+            break;
+        case '2':
+            documento.tipo = TipoDocumento.CPF;
+            break;
+        case '3':
+            documento.tipo = TipoDocumento.PASSAPORTE;
+            break;
+        default:
+            console.log('Tipo de documento inválido.');
+            return criarDependente();
+    }
+
+    documento.dataExpedicao = converterData(readlineSync.question('Digite a data de expedição do documento (dd/mm/yyyy): '));
     dependente.documentos.push(documento);
 
     return dependente;
 }
+
 
 // Função para exibir informações formatadas de um cliente
 function exibirInformacoesCliente(cliente: Cliente) {
@@ -125,39 +161,51 @@ function exibirInformacoesDependente(dependente: Cliente) {
     console.log('------------------------------');
 }
 
-// Criando o cliente
-console.log("Vamos cadastrar o cliente? :3");
-let cliente = criarCliente();
+// Função principal para cadastro de clientes e dependentes
+function iniciarCadastro() {
+    let cadastrarNovoCliente = true;
 
-// Perguntando se deseja cadastrar um dependente
-let cadastrarDependente = readlineSync.keyInYNStrict('Deseja cadastrar um dependente para este cliente? ');
-
-if (cadastrarDependente) {
     do {
-        let dependente = criarDependente();
-        dependente.endereco = cliente.endereco.clonar() as Endereco;
-        dependente.telefones.push(cliente.telefones[0].clonar() as Telefone);
-        dependente.titular = cliente;
+        // Criando o cliente
+        console.log("Vamos cadastrar o cliente? :3");
+        let cliente = criarCliente();
 
-        // Adicionando o dependente ao cliente
-        cliente.dependentes.push(dependente);
-        
-        cadastrarDependente = readlineSync.keyInYNStrict('Deseja cadastrar mais um dependente? ');
-        console.log("-----------------------------------------------")
+        // Perguntando se deseja cadastrar um dependente
+        let cadastrarDependente = readlineSync.keyInYNStrict('Deseja cadastrar um dependente para este cliente? ');
 
-    } while (cadastrarDependente);
+        if (cadastrarDependente) {
+            do {
+                let dependente = criarDependente();
+                dependente.endereco = cliente.endereco.clonar() as Endereco;
+                dependente.telefones.push(cliente.telefones[0].clonar() as Telefone);
+                dependente.titular = cliente;
+
+                // Adicionando o dependente ao cliente
+                cliente.dependentes.push(dependente);
+                
+                cadastrarDependente = readlineSync.keyInYNStrict('Deseja cadastrar mais um dependente? ');
+                console.log("-----------------------------------------------");
+
+            } while (cadastrarDependente);
+        }
+
+        // Exibindo as informações do cliente
+        console.log("Informações do Cliente:");
+        exibirInformacoesCliente(cliente);
+
+        // Exibindo as informações de cada dependente logo após o cliente
+        cliente.dependentes.forEach(dependente => {
+            console.log("Informações do Dependente:");
+            exibirInformacoesDependente(dependente);
+        });
+
+        console.log("Deu tudo certo! :)");
+
+        // Perguntando se deseja cadastrar outro cliente
+        cadastrarNovoCliente = readlineSync.keyInYNStrict('Deseja cadastrar outro cliente? ');
+
+    } while (cadastrarNovoCliente);
 }
 
-
-
-// Exibindo as informações do cliente
-console.log("Informações do Cliente:");
-exibirInformacoesCliente(cliente);
-
-// Exibindo as informações de cada dependente logo após o cliente
-cliente.dependentes.forEach(dependente => {
-    console.log("Informações do Dependente:");
-    exibirInformacoesDependente(dependente);
-});
-
-console.log("Deu tudo certo! :)");
+// Iniciando o fluxo de cadastro
+iniciarCadastro();
