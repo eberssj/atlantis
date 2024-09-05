@@ -1,3 +1,6 @@
+## Como Executar:
+
+```bash
 # Entrar na pasta da lista 1
 cd lista1\atvi-atlantis
 
