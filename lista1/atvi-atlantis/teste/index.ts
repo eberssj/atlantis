@@ -4,6 +4,9 @@ import Endereco from "../modelos/endereco";
 import Telefone from "../modelos/telefone";
 import Documento from "../modelos/documento";
 import { TipoDocumento } from "../enumeracoes/tipoDocumento";
+import Entrada from './entrada';
+
+const entrada = new Entrada()
 
 // Função para criar um cliente com dados fornecidos pelo usuário
 function criarCliente(): Cliente {
@@ -23,17 +26,22 @@ function criarCliente(): Cliente {
     endereco.codigoPostal = readlineSync.question('Digite o CEP do cliente: ');
     cliente.endereco = endereco;
 
-    // Telefone do cliente
-    let telefone = new Telefone();
-    telefone.ddd = readlineSync.question('Digite o DDD do telefone do cliente: ');
-    telefone.numero = readlineSync.question('Digite o número do telefone do cliente: ');
-    cliente.telefones.push(telefone);
+    // Cadastro de múltiplos telefones
+    let quantidadeTelefones = parseInt(readlineSync.question('Quantos telefones deseja cadastrar? '));
+    
+    for (let i = 0; i < quantidadeTelefones; i++) {
+        console.log(`Cadastro do Telefone ${i + 1}`);
+        let telefone = new Telefone();
+        telefone.ddd = readlineSync.question(`Digite o DDD do telefone ${i + 1}: `);
+        telefone.numero = readlineSync.question(`Digite o número do telefone ${i + 1}: `);
+        cliente.telefones.push(telefone);
+    }
 
     // Documento do cliente
     let documento = new Documento();
     documento.numero = readlineSync.question('Digite o número do documento do cliente: ');
-    let tipoDoc = readlineSync.question('Digite o tipo de documento (1 - RG, 2 - CPF): ');
-    documento.tipo = tipoDoc === '1' ? TipoDocumento.RG : TipoDocumento.CPF;
+    let tipoDoc = entrada.receberNumero('Digite o tipo de documento (1 - RG, 2 - CPF): ');
+    documento.tipo = tipoDoc === 1 ? TipoDocumento.RG : TipoDocumento.CPF;
     documento.dataExpedicao = new Date(readlineSync.question('Digite a data de expedição do documento (yyyy-mm-dd): '));
     cliente.documentos.push(documento);
 
@@ -52,6 +60,7 @@ function criarDependente(): Cliente {
     let documento = new Documento();
     documento.numero = readlineSync.question('Digite o número do documento do dependente: ');
     let tipoDoc = readlineSync.question('Digite o tipo de documento (1 - RG, 2 - CPF): ');
+    
     documento.tipo = tipoDoc === '1' ? TipoDocumento.RG : TipoDocumento.CPF;
     documento.dataExpedicao = new Date(readlineSync.question('Digite a data de expedição do documento (yyyy-mm-dd): '));
     dependente.documentos.push(documento);
@@ -134,6 +143,7 @@ if (cadastrarDependente) {
         cliente.dependentes.push(dependente);
         
         cadastrarDependente = readlineSync.keyInYNStrict('Deseja cadastrar mais um dependente? ');
+        console.log("-----------------------------------------------")
 
     } while (cadastrarDependente);
 }
