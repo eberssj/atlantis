@@ -1,24 +1,26 @@
 import { TipoDocumento } from "../enumeracoes/TipoDocumento"
 
 export default class Documento {
-    private numero: string
-    private tipo: TipoDocumento
-    private dataExpedicao: Date
+    private tipo: string;
+    private numero: string;
+    private dataExpedicao: Date;
 
-    constructor(numero: string, tipo: TipoDocumento, dataExpedicao: Date) {
-        this.numero = numero
-        this.tipo = tipo
-        this.dataExpedicao = dataExpedicao
+    constructor(tipo: string, numero: string, dataExpedicao: Date) {
+        this.tipo = tipo;
+        this.numero = numero;
+        this.dataExpedicao = dataExpedicao;
     }
 
-    public get Numero(){
-        return this.numero
+    // Getters
+    public get Tipo() {
+        return this.tipo;
     }
-    public get Tipo(){
-        return this.tipo
+
+    public get Numero() {
+        return this.numero;
     }
-    public get DataExpedicao(){
-        return this.dataExpedicao
+
+    public get DataExpedicao() {
+        return this.dataExpedicao;
     }
-    
 }

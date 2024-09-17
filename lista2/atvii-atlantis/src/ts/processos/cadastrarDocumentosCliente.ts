@@ -2,7 +2,8 @@ import Processo from "../abstracoes/processo";
 import MenuTipoDocumento from "../menus/menuTipoDocumento";
 import Cliente from "../modelos/cliente";
 import CadastroRg from "./cadastroRg";
-import CadastroPassaporte from "./cadastroPassaporte"; 
+import CadastroCpf from "./cadastroCpf"; 
+import CadastroPassaporte from "./cadastroPassaporte";
 
 export default class CadastrarDocumentosCliente extends Processo {
     private cliente: Cliente;
@@ -21,7 +22,7 @@ export default class CadastrarDocumentosCliente extends Processo {
             this.opcao = this.entrada.receberNumero('Qual opção desejada?');
             switch (this.opcao) {
                 case 1: // Cadastro de CPF
-                    this.processo = new CadastroRg(this.cliente); // Assumindo que "CadastroRg" também cobre CPF.
+                    this.processo = new CadastroCpf(this.cliente); 
                     this.processo.processar();
                     break;
                 case 2: // Registro Geral
@@ -29,7 +30,7 @@ export default class CadastrarDocumentosCliente extends Processo {
                     this.processo.processar();
                     break;
                 case 3: // Passaporte
-                    this.processo = new CadastroPassaporte(this.cliente); // Nova classe para cadastro de passaporte.
+                    this.processo = new CadastroPassaporte(this.cliente);
                     this.processo.processar();
                     break;
                 case 0: // Finalizar cadastro

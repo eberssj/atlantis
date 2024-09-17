@@ -6,7 +6,8 @@ export default class ExcluirCliente extends Processo {
         const clientes = Armazem.InstanciaUnica.Clientes;
 
         if (clientes.length === 0) {
-            console.log('Nenhum cliente cadastrado.');
+            console.log('Opção inválida. Nenhum cliente cadastrado.');
+            this.voltarAoMenu();  // Função para retornar ao menu
             return;
         }
 
@@ -19,7 +20,8 @@ export default class ExcluirCliente extends Processo {
         const cliente = clientes[opcaoCliente - 1];
 
         if (!cliente) {
-            console.log('Cliente inválido.');
+            console.log('Opção inválida. Cliente não encontrado.');
+            this.voltarAoMenu();  // Função para retornar ao menu
             return;
         }
 
@@ -28,5 +30,12 @@ export default class ExcluirCliente extends Processo {
         clientes.splice(index, 1);
 
         console.log(`Cliente ${cliente.Nome} e seus dependentes foram excluídos com sucesso!`);
+        this.voltarAoMenu();  // Retorna ao menu após a exclusão
+    }
+
+    // Função para voltar ao menu principal
+    private voltarAoMenu(): void {
+        // Aqui você pode chamar o sistema principal que exibe o menu novamente.
+        // Exemplo: Sistema.menuPrincipal();
     }
 }

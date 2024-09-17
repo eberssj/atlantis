@@ -8,10 +8,10 @@ export default class Cliente {
     private dataNascimento: Date;
     private dataCadastro: Date;
     private telefones: Telefone[] = [];
-    private endereco!: Endereco;
+    private endereco?: Endereco; 
     private documentos: Documento[] = [];
     private dependentes: Cliente[] = [];
-    private titular?: Cliente; 
+    private titular?: Cliente;
 
     constructor(nome: string, nomeSocial: string, dataNascimento: Date) {
         this.nome = nome;
@@ -31,15 +31,16 @@ export default class Cliente {
     public get Dependentes() { return this.dependentes; }
     public get Titular() { return this.titular; }
 
-    // Setter para Titular 
+    // Setter para Titular
     public set Titular(titular: Cliente | undefined) {
         this.titular = titular;
     }
 
     // Setter para Endereco
-    public set Endereco(endereco: Endereco) {
-    this.endereco = endereco;
-}
+    public set Endereco(endereco: Endereco | undefined) {
+        this.endereco = endereco;
+    }
+    
 
     // Métodos de CRUD
     public adicionarDocumento(documento: Documento): void {
@@ -52,7 +53,7 @@ export default class Cliente {
 
     public adicionarDependente(dependente: Cliente): void {
         this.dependentes.push(dependente);
-        dependente.Titular = this; // Agora isso funcionará corretamente
+        dependente.Titular = this; 
     }
 
     // Atualizar dados do cliente
@@ -66,12 +67,32 @@ export default class Cliente {
     public listarDetalhes(): void {
         console.log(`Nome: ${this.nome}`);
         console.log(`Nome Social: ${this.nomeSocial}`);
-        console.log(`Data de Nascimento: ${this.dataNascimento}`);
-        console.log(`Data de Cadastro: ${this.dataCadastro}`);
-        console.log(`Telefones: ${this.telefones.map(t => t.Numero).join(", ")}`);
-        console.log(`Endereço: ${this.endereco.Rua}`);
-        console.log(`Documentos: ${this.documentos.map(d => d.Numero).join(", ")}`);
-        console.log(`Dependentes: ${this.dependentes.map(d => d.Nome).join(", ")}`);
+        console.log(`Data de Nascimento: ${this.dataNascimento.toLocaleDateString()}`);
+        console.log(`Data de Cadastro: ${this.dataCadastro.toLocaleDateString()}`);
+
+        if (this.telefones.length > 0) {
+            console.log(`Telefones: ${this.telefones.map(t => t.Numero).join(", ")}`);
+        } else {
+            console.log("Nenhum telefone cadastrado.");
+        }
+
+        if (this.endereco) {
+            console.log(`Endereço: ${this.endereco.Rua}`);
+        } else {
+            console.log("Nenhum endereço cadastrado.");
+        }
+
+        if (this.documentos.length > 0) {
+            console.log(`Documentos: ${this.documentos.map(d => d.Numero).join(", ")}`);
+        } else {
+            console.log("Nenhum documento cadastrado.");
+        }
+
+        if (this.dependentes.length > 0) {
+            console.log(`Dependentes: ${this.dependentes.map(d => d.Nome).join(", ")}`);
+        } else {
+            console.log("Nenhum dependente cadastrado.");
+        }
     }
 
     // Listar dependentes do cliente
@@ -96,5 +117,6 @@ export default class Cliente {
     // Remover um dependente
     public removerDependente(nome: string): void {
         this.dependentes = this.dependentes.filter(dep => dep.Nome !== nome);
+        console.log(`Dependente ${nome} removido com sucesso.`);
     }
 }

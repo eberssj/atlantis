@@ -18,8 +18,11 @@ export default class ImpressaorCliente implements Impressor {
             + `| Data de nascimento: ${this.cliente.DataNascimento.toLocaleDateString()}\n`
             + `| Data de cadastro: ${this.cliente.DataCadastro.toLocaleDateString()}`
 
-        this.impressor = new ImpressorEndereco(this.cliente.Endereco)
-        impressao = impressao + `\n${this.impressor.imprimir()}`
+            if (this.cliente.Endereco) {
+                this.impressor = new ImpressorEndereco(this.cliente.Endereco);
+            } else {
+                console.log("Endereço não disponível.");
+            }
 
         this.impressor = new ImpressorDocumentos(this.cliente.Documentos)
         impressao = impressao + `\n${this.impressor.imprimir()}`
