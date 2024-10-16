@@ -1,7 +1,7 @@
 ## Como Executar:
 
 ```bash
-# Entrar na pasta da lista 1
+# Entrar na pasta da lista 2
 cd lista2\atvii-atlantis
 
 # Instalar as dependências
