@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  font-family: 'Alatsi', sans-serif;
+}
+
+.app-container {
+  display: flex;
+}
+
+
