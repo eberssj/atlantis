@@ -14,9 +14,14 @@
     margin: 0; /* Remove a margem padrão */
     display: flex; /* Alinha os itens do submenu horizontalmente */
     flex-direction: column; /* Coloca os links do submenu em coluna */
-    background-color: #f9f9f9; /* Cor de fundo do submenu */
-    border: 1px solid #ddd; /* Borda do submenu */
     padding: 5px; /* Espaçamento interno do submenu, reduzido */
     max-height: 200px; /* Altura máxima do submenu */
     overflow-y: auto; /* Rolagem vertical se o conteúdo for maior */
+  }
+
+  .menu-icon {
+    width: 16px; /* Ajuste para o tamanho desejado */
+    height: 16px;
+    margin-right: 8px; /* Espaço entre o ícone e o texto */
+    vertical-align: middle; /* Alinha o ícone verticalmente com o texto */
   }

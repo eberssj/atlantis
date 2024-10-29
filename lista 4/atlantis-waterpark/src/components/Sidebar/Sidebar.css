@@ -1,69 +1,85 @@
 .sidebar {
-  width: 20%; /* Largura da sidebar */
-  height: 100vh; /* Altura total da tela */
+  width: 20%;
+  height: 100vh;
   background-color: #ffffff;
-  padding: 0; /* Remove qualquer padding da sidebar */
+  padding: 0;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Alinha os itens no início */
-  position: relative; /* Para que a linha vertical fique posicionada corretamente */
+  justify-content: flex-start;
+  position: relative;
 }
 
 .logo {
-  width: 100%; /* Ocupa toda a largura da sidebar */
-  height: auto; /* Mantém a proporção da imagem */
-  max-height: auto; /* Limita a altura máxima da logo */
-  margin: 0; /* Remove qualquer margem */
+  width: 100%;
+  height: auto;
+  max-height: auto;
+  margin: 0;
   margin-bottom: 10px;
 }
 
 .menu-container {
   display: flex;
-  align-items: center; /* Alinha a imagem decorativa e os links no início */
+  align-items: center;
 }
 
 .menu-decorativo {
-  height: 70vh; /* Ajusta a altura da imagem decorativa */
-  width: auto; /* Mantém a proporção da imagem */
-  margin-right: 10px; /* Espaço entre a imagem decorativa e os links */
-  margin-left: 10px;
+  height: 70vh;
+  width: auto;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
-
 .menu-list {
-  list-style: none; /* Remove os marcadores da lista */
-  padding: 0; /* Remove o padding padrão */
-  display: flex; /* Alinha os itens da lista horizontalmente */
-  flex-direction: column; /* Coloca os links em coluna */
-  max-height: 70vh; /* Altura máxima da lista de links */
-  overflow: auto; /* Adiciona rolagem se necessário */
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  max-height: 70vh;
+  overflow: auto;
 }
 
 .menu-list li {
-  margin: 5px 0; /* Espaçamento entre os itens da lista, reduzido */
+  margin: 5px 0;
 }
 
 .menu-list a {
-  text-decoration: none; /* Remove o sublinhado dos links */
-  color: #333; /* Cor do texto */
-  font-size: 16px; /* Tamanho da fonte, levemente reduzido */
-  transition: color 0.3s; /* Transição suave para a cor */
+  text-decoration: none;
+  color: #000000;
+  font-size: 16px;
+  transition: color 0.3s;
 }
 
 .menu-list li span {
-  cursor: pointer; /* Muda o cursor ao passar sobre a span */
+  cursor: pointer;
 }
 
 .menu-list a:hover,
 .menu-list li span:hover {
-  color: #007bff; /* Cor ao passar o mouse */
+  color: #007bff;
 }
 
 .vertical-line {
-  position: absolute; /* Posiciona a linha em relação à sidebar */
-  right: 0; /* Alinha à direita da sidebar */
-  top: 0; /* Começa no topo da sidebar */
-  width: 1px; /* Ajuste a largura da linha conforme necessário */
-  height: 100%; /* Ocupa toda a altura da sidebar */
-  background-color: #B3B3B3; /* Cor da linha (pode ser a cor que preferir) */
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background-color: #B3B3B3;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.seta-icon {
+  width: 12px;
+  height: auto;
+  margin-left: 5px;
+  transition: transform 0.3s ease;
+}
+
+.seta-icon.rotate {
+  transform: rotate(180deg);
 }
