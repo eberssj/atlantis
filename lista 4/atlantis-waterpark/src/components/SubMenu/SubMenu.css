@@ -9,19 +9,19 @@
   }
 
   .submenu {
-    list-style: none; /* Remove os marcadores da lista do submenu */
-    padding: 0; /* Remove o padding padrão */
-    margin: 0; /* Remove a margem padrão */
-    display: flex; /* Alinha os itens do submenu horizontalmente */
-    flex-direction: column; /* Coloca os links do submenu em coluna */
-    padding: 5px; /* Espaçamento interno do submenu, reduzido */
-    max-height: 200px; /* Altura máxima do submenu */
-    overflow-y: auto; /* Rolagem vertical se o conteúdo for maior */
+    list-style: none; 
+    padding: 0; 
+    margin: 0; 
+    display: flex; 
+    flex-direction: column; 
+    padding: 5px; 
+    max-height: 200px; 
+    overflow-y: auto; 
   }
 
   .menu-icon {
-    width: 16px; /* Ajuste para o tamanho desejado */
+    width: 16px; 
     height: 16px;
-    margin-right: 8px; /* Espaço entre o ícone e o texto */
-    vertical-align: middle; /* Alinha o ícone verticalmente com o texto */
+    margin-right: 8px; 
+    vertical-align: middle;
   }

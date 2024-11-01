@@ -1,0 +1,40 @@
+.banner-topo {
+    width: 100%; 
+    height: auto; 
+    display: block; 
+    margin: 0;
+    padding: 0; 
+  }
+  
+  .home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .conteudo {
+    padding: 20px;
+    max-width: 800px;
+    position: relative; 
+    padding-top: 200px; 
+  }
+  .banner-topo {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    height: 200px; 
+    z-index: -1; 
+  }
+
+  .atlantis-text {
+    background: linear-gradient(to bottom, #201E43, #248FD6);
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+  
+  
+
+  
