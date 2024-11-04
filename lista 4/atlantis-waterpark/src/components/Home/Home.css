@@ -1,40 +1,75 @@
+.home {
+  padding-top: 0;
+}
+
 .banner-topo {
-    width: 100%; 
-    height: auto; 
-    display: block; 
-    margin: 0;
-    padding: 0; 
-  }
-  
-  .home {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .conteudo {
-    padding: 20px;
-    max-width: 800px;
-    position: relative; 
-    padding-top: 200px; 
-  }
-  .banner-topo {
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    right: 0; 
-    height: 200px; 
-    z-index: -1; 
-  }
+  width: 100%; 
+  height: auto; 
+  display: block; 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  height: 200px; 
+  z-index: -1; 
+}
 
-  .atlantis-text {
-    background: linear-gradient(to bottom, #201E43, #248FD6);
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent; 
-    background-clip: text;
-    text-fill-color: transparent;
-  }
-  
-  
+.conteudo {
+  padding: 20px;
+  max-width: 800px;
+  position: relative; 
+  padding-top: 220px; /* Mantém a distância para o conteúdo não sobrepor o banner */
+}
 
-  
+h2 {
+  margin-top: 0;
+}
+
+.atlantis-text {
+  background: linear-gradient(to bottom, #201E43, #248FD6);
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent; 
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.descricao {
+  font-size: 1.1rem; /* Aumenta o tamanho da fonte dos parágrafos */
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.icon {
+  width: 24px; /* Define o tamanho do ícone */
+  height: 24px;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.info-text {
+  display: flex;
+  flex-direction: column; /* Empilha o título e o contato em coluna */
+}
+
+.titulo {
+  font-weight: bold;
+}
+
+.contato {
+  color: #134B70; /* Define a cor do telefone, email e link */
+  text-decoration: none;
+}
+
+.contato:hover {
+  text-decoration: underline; /* Adiciona um sublinhado ao passar o mouse */
+}
