@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar/Sidebar';
 import Home from './components/Home/Home';
+import CadastrarCliente from './components/CadastroCliente/CadastroCliente';
 
 const App: React.FC = () => {
   return (
@@ -10,6 +11,7 @@ const App: React.FC = () => {
       <div className="content">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/cadastrar-cliente" element={<CadastrarCliente />} />
           {/* Adicione outras rotas aqui conforme for desenvolvendo */}
         </Routes>
       </div>
