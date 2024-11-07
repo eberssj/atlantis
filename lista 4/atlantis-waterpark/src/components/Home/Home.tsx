@@ -10,15 +10,15 @@ const Home: React.FC = () => {
     <div className="home">
       <img src={retangulo} alt="Banner Topo" className="banner-topo" />
       <div className="conteudo">
-        <h2>Seja bem-vindo ao sistema <span className="atlantis-text">Atlantis</span></h2>
+        <h1>Seja bem-vindo ao sistema <span className="atlantis-text">Atlantis</span></h1>
         <p className="descricao">Aqui está o painel de controle, caso queira acessar outras partes do sistema, use o menu ao lado.</p>
         <p className="descricao">Em caso de dúvidas, entre em contato conosco! Acesse:</p>
-        <ul>
+        <ul className='container'>
           <li>
             <img src={telefoneIcon} alt="Telefone" className="icon" />
             <div className="info-text">
               <span className="titulo">Central de atendimento:</span>
-              <a href="tel:+55129822222222" className="contato">+55 (12) 98222222222</a>
+              <a href="tel:+55129822222222" className="contato">+55 (12) 98222222289</a>
             </div>
           </li>
           <li>

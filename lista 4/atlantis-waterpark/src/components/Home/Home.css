@@ -18,7 +18,7 @@
   padding: 20px;
   max-width: 800px;
   position: relative; 
-  padding-top: 220px; /* Mantém a distância para o conteúdo não sobrepor o banner */
+  padding-top: 140px; 
 }
 
 h2 {
@@ -34,7 +34,7 @@ h2 {
 }
 
 .descricao {
-  font-size: 1.1rem; /* Aumenta o tamanho da fonte dos parágrafos */
+  font-size: 1.1rem;
   margin-bottom: 10px;
 }
 
@@ -50,7 +50,7 @@ li {
 }
 
 .icon {
-  width: 24px; /* Define o tamanho do ícone */
+  width: 24px; 
   height: 24px;
   margin-right: 8px;
   flex-shrink: 0;
@@ -58,18 +58,26 @@ li {
 
 .info-text {
   display: flex;
-  flex-direction: column; /* Empilha o título e o contato em coluna */
+  flex-direction: column; 
 }
 
 .titulo {
   font-weight: bold;
+  font-size: 1.3rem;
 }
 
 .contato {
-  color: #134B70; /* Define a cor do telefone, email e link */
+  color: #134B70; 
   text-decoration: none;
+  font-size: 1.2rem;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.container{
+  margin-top: 32px;
 }
 
 .contato:hover {
-  text-decoration: underline; /* Adiciona um sublinhado ao passar o mouse */
+  text-decoration: underline; 
 }
