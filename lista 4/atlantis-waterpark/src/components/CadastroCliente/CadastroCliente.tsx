@@ -9,6 +9,7 @@ interface Dependente {
 }
 
 const CadastrarCliente: React.FC = () => {
+  const [id, setId] = useState(''); 
   const [nome, setNome] = useState('');
   const [nomeSocial, setNomeSocial] = useState('');
   const [dataNascimento, setDataNascimento] = useState('');
@@ -38,7 +39,7 @@ const CadastrarCliente: React.FC = () => {
     e.preventDefault();
 
     const cliente: Cliente = {
-      id: Math.random().toString(36).substr(2, 9), // Gera um ID aleatório para o cliente
+      id, 
       nome,
       nomeSocial,
       dataNascimento,
@@ -50,7 +51,7 @@ const CadastrarCliente: React.FC = () => {
     try {
       const mensagem = await mockCadastrarCliente(cliente);
       setPopupMensagem(mensagem);
-      setShowPopup(true); // Exibe o popup
+      setShowPopup(true); 
     } catch (erro) {
       setPopupMensagem(erro as string); 
       setShowPopup(true);
@@ -71,6 +72,15 @@ const CadastrarCliente: React.FC = () => {
       <h1>Cadastrar Cliente</h1>
       <form onSubmit={handleCadastro}>
         <div className="flex-container">
+          <div>
+            <label>ID do Cliente:</label>
+            <input className='id-cliente'
+              type="text"
+              value={id}
+              onChange={(e) => setId(e.target.value)} 
+              required
+            />
+          </div>
           <div>
             <label>Nome:</label>
             <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} required />

@@ -16,7 +16,11 @@ const SubMenu: React.FC = () => {
           <img src={iconCadastro} alt="Cadastro" className="menu-icon" /> Cadastrar
         </Link>
       </li>
-      <li><img src={iconEdicao} alt="Edição" className="menu-icon" /> Editar</li>
+      <li>
+        <Link to="/editar-cliente">
+          <img src={iconEdicao} alt="Edição" className="menu-icon" /> Edição 
+        </Link>
+      </li>
       <li><img src={iconVerCliente} alt="Ver Cliente" className="menu-icon" /> Ver Cliente</li>
       <li><img src={iconExclusao} alt="Exclusão" className="menu-icon" /> Exclusão</li>
       <li><img src={iconListagem} alt="Listagem" className="menu-icon" /> Listagem</li>

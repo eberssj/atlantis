@@ -30,7 +30,7 @@ const clientesExistentes: Cliente[] = [
     dependentes: [
       {
         id: '1.1',
-        nome: ' SilAnava',
+        nome: 'Ana Silva',
         nomeSocial: 'Ana',
         dataNascimento: '2015-03-20',
         documento: { tipo: 'RG', numero: '9876543' },
@@ -49,6 +49,7 @@ const clientesExistentes: Cliente[] = [
   }
 ];
 
+// Função para cadastrar um novo cliente
 export const mockCadastrarCliente = async (novoCliente: Cliente): Promise<string> => {
   const clienteJaExiste = clientesExistentes.some(cliente =>
     cliente.nome === novoCliente.nome || cliente.documento.numero === novoCliente.documento.numero
@@ -60,9 +61,11 @@ export const mockCadastrarCliente = async (novoCliente: Cliente): Promise<string
 
   await new Promise(resolve => setTimeout(resolve, 500));
 
+  clientesExistentes.push(novoCliente);  // Adiciona o novo cliente ao array de clientes
   return 'Cadastro concluído com sucesso!';
 };
 
+// Função para adicionar um dependente a um cliente
 export const adicionarDependente = async (idCliente: string, dependente: Dependente): Promise<string> => {
   const cliente = clientesExistentes.find(c => c.id === idCliente);
 
@@ -85,6 +88,25 @@ export const adicionarDependente = async (idCliente: string, dependente: Depende
   cliente.dependentes.push(dependente);
 
   return 'Dependente cadastrado com sucesso!';
+};
+
+// Função para buscar um cliente pelo ID
+export const mockBuscarCliente = async (id: string): Promise<Cliente | undefined> => {
+  const cliente = clientesExistentes.find(cliente => cliente.id === id);
+  return cliente;
+};
+
+// Função para editar um cliente
+export const mockEditarCliente = async (id: string, dadosAtualizados: Cliente): Promise<string> => {
+  const clienteIndex = clientesExistentes.findIndex(cliente => cliente.id === id);
+  
+  if (clienteIndex === -1) {
+    return Promise.reject('Cliente não encontrado.');
+  }
+
+  clientesExistentes[clienteIndex] = { ...clientesExistentes[clienteIndex], ...dadosAtualizados };
+  
+  return 'Cliente editado com sucesso!';
 };
 
 const novoDependente: Dependente = {
