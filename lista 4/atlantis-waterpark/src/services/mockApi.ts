@@ -46,6 +46,34 @@ const clientesExistentes: Cliente[] = [
     documento: { tipo: 'RG', numero: '1234567' },
     endereco: 'Rua B, 456',
     telefone: '(11) 9876-5432'
+  },
+  {
+    id: '3',
+    nome: 'Pedro Souza',
+    nomeSocial: 'Pedro',
+    dataNascimento: '1992-04-30',
+    documento: { tipo: 'CPF', numero: '98765432000' },
+    endereco: 'Rua D, 123',
+    telefone: '(11) 8765-4321',
+    dependentes: [
+      {
+        id: '3.1',
+        nome: 'Lucas Souza',
+        nomeSocial: 'Lucas',
+        dataNascimento: '2018-08-25',
+        documento: { tipo: 'RG', numero: '12345678' },
+        telefone: '(11) 9876-4321'
+      }
+    ]
+  },
+  {
+    id: '4',
+    nome: 'Laura Costa',
+    nomeSocial: 'Laura',
+    dataNascimento: '1988-12-12',
+    documento: { tipo: 'RG', numero: '2345678' },
+    endereco: 'Rua E, 789',
+    telefone: '(11) 9999-1111'
   }
 ];
 
@@ -113,6 +141,15 @@ export const mockEditarCliente = async (id: string, dadosAtualizados: Cliente): 
   return 'Cliente editado com sucesso!';
 };
 
+// Função para buscar todos os clientes
+export const mockBuscarClientes = async (): Promise<Cliente[]> => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(clientesExistentes);
+    }, 500); // Simula um atraso de 500ms
+  });
+};
+
 // Função para excluir um cliente pelo ID
 export const mockExcluirCliente = async (id: string): Promise<string> => {
   console.log('ID do Cliente a ser excluído:', id);  // Log do ID recebido
@@ -146,7 +183,7 @@ const novoDependente: Dependente = {
 adicionarDependente('1', novoDependente).then(console.log).catch(console.error);
 
 const novoCliente: Cliente = {
-  id: '3',
+  id: '5',
   nome: 'Lucca Santos',
   dataNascimento: '2000-02-28',
   documento: { tipo: 'CPF', numero: '98765432100' },
@@ -155,5 +192,3 @@ const novoCliente: Cliente = {
 };
 
 mockCadastrarCliente(novoCliente).then(console.log).catch(console.error);
-
-

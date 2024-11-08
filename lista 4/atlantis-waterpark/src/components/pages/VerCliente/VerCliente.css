@@ -30,7 +30,8 @@
     background-color: white;
     color: #201E43;
     width: 100%;
-    max-width: 400px; /* Limita a largura do input */
+    max-width: 400px; 
+    margin-bottom: 10px;
     margin-top: 10px;
   }
   
@@ -48,8 +49,8 @@
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s;
-    width: 100%;
-    max-width: 200px; /* Limita a largura do botão */
+    width: 30%;
+    max-width: 200px;
   }
   
   .ver-cliente button[type="submit"]:hover {

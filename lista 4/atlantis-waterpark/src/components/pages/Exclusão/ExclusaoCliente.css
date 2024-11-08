@@ -1,15 +1,15 @@
 .excluir-cliente {
     padding: 20px;
-    width: 100%; /* O conteúdo vai ocupar 100% da largura disponível */
-    max-width: 600px; /* A largura máxima do formulário */
-    margin: 0; /* Sem margens externas para centralização */
+    width: 100%; 
+    max-width: 600px; 
+    margin: 0; 
   }
   
   .excluir-cliente h2 {
     font-size: 2em;
     margin-bottom: 20px;
     color: #201E43;
-    text-align: left; /* Alinha o título à esquerda */
+    text-align: left; 
   }
   
   .excluir-cliente form {
@@ -20,13 +20,15 @@
   
   .excluir-cliente input[type="text"] {
     padding: 10px;
-    font-size: 0.9rem;
+    font-size: 1rem;
     border: 1.5px solid #134B70;
     border-radius: 8px;
     background-color: white;
     color: #201E43;
     width: 100%; 
+    max-width: 400px;
     margin-bottom: 10px;
+    margin-top: 10px;
   }
   
   .excluir-cliente input[type="text"]:focus {
