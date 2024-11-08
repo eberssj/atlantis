@@ -3,13 +3,15 @@ import { Cliente, Dependente, mockBuscarCliente } from '../../../services/mockAp
 import './VerCliente.css';
 
 const VerCliente: React.FC = () => {
-  const [id, setId] = useState('');
+  const [id, setId] = useState<string>(''); 
   const [cliente, setCliente] = useState<Cliente | null>(null);
   const [erro, setErro] = useState<string | null>(null);
 
   const handleBuscarCliente = async (event: React.FormEvent) => {
     event.preventDefault();
     setErro(null); 
+
+    console.log('Buscando cliente com o ID:', id); 
 
     try {
       const resultado = await mockBuscarCliente(id);
@@ -19,12 +21,13 @@ const VerCliente: React.FC = () => {
         setErro('Cliente não encontrado.');
       }
     } catch (e) {
+      console.error('Erro ao buscar cliente:', e); // Log do erro
       setErro('Ocorreu um erro ao buscar o cliente.');
     }
   };
 
   return (
-    <div className="ver-cliente"> {/* Adicionando a classe ver-cliente aqui */}
+    <div className="ver-cliente">
       <h2>Buscar Cliente</h2>
       <form onSubmit={handleBuscarCliente}>
         <input

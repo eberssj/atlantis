@@ -67,6 +67,7 @@
   .editar-cliente input[type="checkbox"] {
     transform: scale(1.2);
     margin-right: 10px;
+    margin-left: 10px;
   }
   
   .editar-cliente .formulario-dependente {

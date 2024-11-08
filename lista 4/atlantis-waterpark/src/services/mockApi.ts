@@ -92,7 +92,11 @@ export const adicionarDependente = async (idCliente: string, dependente: Depende
 
 // Função para buscar um cliente pelo ID
 export const mockBuscarCliente = async (id: string): Promise<Cliente | undefined> => {
+  console.log('Procurando cliente com o ID:', id); 
   const cliente = clientesExistentes.find(cliente => cliente.id === id);
+  if (!cliente) {
+    console.error('Cliente não encontrado para o ID:', id); 
+  }
   return cliente;
 };
 
@@ -107,6 +111,27 @@ export const mockEditarCliente = async (id: string, dadosAtualizados: Cliente): 
   clientesExistentes[clienteIndex] = { ...clientesExistentes[clienteIndex], ...dadosAtualizados };
   
   return 'Cliente editado com sucesso!';
+};
+
+// Função para excluir um cliente pelo ID
+export const mockExcluirCliente = async (id: string): Promise<string> => {
+  console.log('ID do Cliente a ser excluído:', id);  // Log do ID recebido
+
+  const clienteIndex = clientesExistentes.findIndex(cliente => cliente.id === id);
+
+  if (clienteIndex === -1) {
+    console.log('Cliente não encontrado!');  // Log de erro
+    return Promise.reject('Cliente não encontrado.');
+  }
+
+  console.log('Cliente encontrado:', clientesExistentes[clienteIndex]);  // Log do cliente encontrado
+
+  // Remove o cliente do array
+  clientesExistentes.splice(clienteIndex, 1);
+
+  console.log('Clientes após a exclusão:', clientesExistentes);  // Log de clientes restantes
+  
+  return 'Cliente excluído com sucesso!';
 };
 
 const novoDependente: Dependente = {
@@ -130,3 +155,5 @@ const novoCliente: Cliente = {
 };
 
 mockCadastrarCliente(novoCliente).then(console.log).catch(console.error);
+
+

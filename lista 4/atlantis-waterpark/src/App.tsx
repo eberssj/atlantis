@@ -5,6 +5,7 @@ import Home from './components/pages/Home/Home';
 import CadastrarCliente from './components/pages/CadastroCliente/CadastroCliente';
 import EditarCliente from './components/pages/EditarCliente/EditarCliente';
 import VerCliente from './components/pages/VerCliente/VerCliente';
+import ExcluirCliente from './components/pages/Exclusão/ExclusaoCliente';
 
 const App: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const App: React.FC = () => {
           <Route path="/cadastrar-cliente" element={<CadastrarCliente />} />
           <Route path="/editar-cliente" element={<EditarCliente />} />
           <Route path="/ver-cliente" element={<VerCliente />} />
+          <Route path="/exclusao-cliente" element={<ExcluirCliente />} />
           {/* Adicione outras rotas aqui conforme for desenvolvendo */}
         </Routes>
       </div>
