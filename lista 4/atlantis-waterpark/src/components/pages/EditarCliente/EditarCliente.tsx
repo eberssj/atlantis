@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../EditarCliente/EditarCliente.css';
-import { mockBuscarCliente, mockEditarCliente, Cliente, Dependente } from '../../services/mockApi';
+import './EditarCliente.css';
+import { mockBuscarCliente, mockEditarCliente, Cliente, Dependente } from '../../../services/mockApi';
 
 const EditarCliente = () => {
   const [id, setId] = useState('');

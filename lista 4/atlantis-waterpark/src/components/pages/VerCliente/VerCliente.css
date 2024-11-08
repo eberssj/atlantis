@@ -1,0 +1,92 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+
+.ver-cliente {
+    padding: 20px;
+    width: 100%;
+  }
+  
+  .ver-cliente h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #201E43;
+  }
+  
+  .ver-cliente form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .ver-cliente input[type="text"] {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1.5px solid #134B70;
+    border-radius: 8px;
+    background-color: white;
+    color: #201E43;
+    width: 100%;
+    max-width: 400px; /* Limita a largura do input */
+    margin-top: 10px;
+  }
+  
+  .ver-cliente input[type="text"]:focus {
+    border-color: #2C7BB6;
+    outline: none;
+  }
+  
+  .ver-cliente button[type="submit"] {
+    background-color: #134B70;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    max-width: 200px; /* Limita a largura do botão */
+  }
+  
+  .ver-cliente button[type="submit"]:hover {
+    background-color: #2C7BB6;
+  }
+  
+  .ver-cliente .erro {
+    color: red;
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+  
+  .ver-cliente .informacoes-cliente,
+  .ver-cliente .dependente {
+    margin-top: 20px;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    max-width: 400px; /* Limita a largura da seção de informações */
+  }
+  
+  .ver-cliente .informacoes-cliente h3,
+  .ver-cliente .dependente h4 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #201E43;
+  }
+  
+  .ver-cliente .dependente {
+    margin-top: 10px;
+    padding: 1em;
+    background-color: #f9f9f9;
+  }
+  
+  .ver-cliente .informacoes-cliente p,
+  .ver-cliente .dependente p {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+  

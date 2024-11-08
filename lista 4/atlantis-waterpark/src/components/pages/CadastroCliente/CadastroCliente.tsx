@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Cliente, mockCadastrarCliente } from '../../services/mockApi';
-import '../CadastroCliente/CadastroCliente.css';
+import { Cliente, mockCadastrarCliente } from '../../../services/mockApi';
+import './CadastroCliente.css';
 
 interface Dependente {
   nome: string;

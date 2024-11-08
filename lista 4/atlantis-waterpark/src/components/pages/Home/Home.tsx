@@ -1,9 +1,9 @@
 import React from 'react';
-import retangulo from '../../assets/img/retangulo.png'; 
-import telefoneIcon from '../../assets/img/telefone.png'; // Imagem do ícone de telefone
-import emailIcon from '../../assets/img/email.png';       // Imagem do ícone de email
-import chatbotIcon from '../../assets/img/chatbot.png';   // Imagem do ícone de chatbot
-import '../Home/Home.css';
+import retangulo from '../../../assets/img/retangulo.png'; 
+import telefoneIcon from '../../../assets/img/telefone.png';
+import emailIcon from '../../../assets/img/email.png';       
+import chatbotIcon from '../../../assets/img/chatbot.png';   
+import './Home.css';
 
 const Home: React.FC = () => {
   return (

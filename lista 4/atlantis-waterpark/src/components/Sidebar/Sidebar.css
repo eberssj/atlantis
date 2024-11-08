@@ -63,7 +63,7 @@
   right: 0;
   top: 0;
   width: 1px;
-  height: 100%;
+  min-height: 100vh; /* Altura mínima de 100% da viewport */
   background-color: #B3B3B3;
 }
 

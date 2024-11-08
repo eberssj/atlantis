@@ -122,7 +122,7 @@ adicionarDependente('1', novoDependente).then(console.log).catch(console.error);
 
 const novoCliente: Cliente = {
   id: '3',
-  nome: 'Lucas Santos',
+  nome: 'Lucca Santos',
   dataNascimento: '2000-02-28',
   documento: { tipo: 'CPF', numero: '98765432100' },
   endereco: 'Rua C, 789',

@@ -1,4 +1,3 @@
-// SubMenu.tsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 import iconCadastro from '../../assets/img/cadastrocli.png';
@@ -21,7 +20,11 @@ const SubMenu: React.FC = () => {
           <img src={iconEdicao} alt="Edição" className="menu-icon" /> Edição 
         </Link>
       </li>
-      <li><img src={iconVerCliente} alt="Ver Cliente" className="menu-icon" /> Ver Cliente</li>
+      <li>
+        <Link to="/ver-cliente">
+          <img src={iconVerCliente} alt="Ver" className="menu-icon" /> Ver Cliente 
+        </Link>
+      </li>
       <li><img src={iconExclusao} alt="Exclusão" className="menu-icon" /> Exclusão</li>
       <li><img src={iconListagem} alt="Listagem" className="menu-icon" /> Listagem</li>
     </ul>
