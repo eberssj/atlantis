@@ -9,6 +9,7 @@ import ExcluirCliente from './components/pages/Exclusão/ExclusaoCliente';
 import ListarClientes from './components/pages/ListarCliente/ListarCliente';
 
 import CadastrarAcomodacao from './components/pages/CadastrarAcomodacao/CadastrarAcomodacao';
+import EditarAcomodacao from './components/pages/EditarAcomodacao/EditarAcomodacao';
 
 const App: React.FC = () => {
   return (
@@ -24,6 +25,7 @@ const App: React.FC = () => {
           <Route path="/listar-cliente" element={<ListarClientes />} />
           
           <Route path="/cadastrar-acomodacao" element={<CadastrarAcomodacao />} />
+          <Route path="/editar-acomodacao" element={<EditarAcomodacao />} />
         </Routes>
       </div>
     </div>
