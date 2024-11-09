@@ -255,6 +255,28 @@ export const verAcomodacao = async (idCliente: string): Promise<string> => {
   return `O cliente ${cliente.nome} está associado à acomodação: ${cliente.acomodacao}`;
 };
 
+// Função para remover a acomodação associada a um cliente
+export const removerAcomodacao = async (idCliente: string): Promise<string> => {
+  const cliente = clientesExistentes.find(c => c.id === idCliente);
 
+  if (!cliente) {
+    return Promise.reject('Cliente não encontrado.');
+  }
+
+  // Verifica se o cliente possui acomodação associada
+  if (!cliente.acomodacao) {
+    return Promise.reject('Esse cliente não possui acomodação associada.');
+  }
+
+  // Remove a acomodação associada
+  cliente.acomodacao = undefined;
+  return 'Acomodação removida com sucesso!';
+};
+
+// Função para listar clientes associados a uma acomodação específica
+export const listarClientesPorAcomodacao = async (tipoAcomodacao: AcomodacaoTipo): Promise<Cliente[]> => {
+  // Filtra os clientes que têm o tipo de acomodação desejado
+  return clientesExistentes.filter(cliente => cliente.acomodacao === tipoAcomodacao);
+};
 
 

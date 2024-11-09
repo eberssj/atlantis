@@ -11,6 +11,8 @@ import ListarClientes from './components/pages/ListarCliente/ListarCliente';
 import CadastrarAcomodacao from './components/pages/CadastrarAcomodacao/CadastrarAcomodacao';
 import EditarAcomodacao from './components/pages/EditarAcomodacao/EditarAcomodacao';
 import VerAcomodacao from './components/pages/VerAcomodação/VerAcomodacao';
+import ExcluirAcomodacao from './components/pages/ExcluirAcomodacao/ExcluirAcomodacao';
+import ListarAcomodacao from './components/pages/ListarAcomodacoes/ListarAcomodacoes';
 
 const App: React.FC = () => {
   return (
@@ -28,6 +30,8 @@ const App: React.FC = () => {
           <Route path="/cadastrar-acomodacao" element={<CadastrarAcomodacao />} />
           <Route path="/editar-acomodacao" element={<EditarAcomodacao />} />
           <Route path="/ver-acomodacao" element={<VerAcomodacao />} />
+          <Route path="/excluir-acomodacao" element={<ExcluirAcomodacao />} />
+          <Route path="/listar-acomodacao" element={<ListarAcomodacao />} />
         </Routes>
       </div>
     </div>
