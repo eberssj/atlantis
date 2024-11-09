@@ -16,22 +16,32 @@ export interface Cliente {
   endereco: string;
   telefone: string;
   dependentes?: Dependente[];
+  acomodacao?: AcomodacaoTipo; 
 }
+
+export type AcomodacaoTipo = 
+  | 'Casal Simples'
+  | 'Família Simples'
+  | 'Família Mais'
+  | 'Família Super'
+  | 'Solteiro Simples'
+  | 'Solteiro Mais';
 
 const clientesExistentes: Cliente[] = [
   {
     id: '1',
-    nome: 'João Silva',
-    nomeSocial: 'João',
+    nome: 'Sophia Roncati',
+    nomeSocial: 'Soso',
     dataNascimento: '1990-01-01',
     documento: { tipo: 'CPF', numero: '12345678900' },
     endereco: 'Rua A, 123',
     telefone: '(11) 1234-5678',
+    acomodacao: 'Casal Simples',
     dependentes: [
       {
         id: '1.1',
-        nome: 'Ana Silva',
-        nomeSocial: 'Ana',
+        nome: 'Livia Faria',
+        nomeSocial: 'Livinha',
         dataNascimento: '2015-03-20',
         documento: { tipo: 'RG', numero: '9876543' },
         telefone: '(11) 9876-1234'
@@ -74,23 +84,29 @@ const clientesExistentes: Cliente[] = [
     documento: { tipo: 'RG', numero: '2345678' },
     endereco: 'Rua E, 789',
     telefone: '(11) 9999-1111'
+  },
+  {
+    id: '5',
+    nome: 'Lucca Santos',
+    dataNascimento: '2000-02-28',
+    documento: { tipo: 'CPF', numero: '98765432100' },
+    endereco: 'Rua C, 789',
+    telefone: '(11) 8765-4321'
   }
 ];
 
-// Função para cadastrar um novo cliente
-export const mockCadastrarCliente = async (novoCliente: Cliente): Promise<string> => {
+// Função para cadastrar um novo cliente com acomodação
+export const mockCadastrarClienteNovo = async (novoCliente: Cliente): Promise<string> => {
   const clienteJaExiste = clientesExistentes.some(cliente =>
     cliente.nome === novoCliente.nome || cliente.documento.numero === novoCliente.documento.numero
   );
 
   if (clienteJaExiste) {
-    return Promise.reject('Erro: Cliente já cadastrado com esse nome ou documento.');
+    return "Cliente já cadastrado.";
   }
 
-  await new Promise(resolve => setTimeout(resolve, 500));
-
-  clientesExistentes.push(novoCliente);  // Adiciona o novo cliente ao array de clientes
-  return 'Cadastro concluído com sucesso!';
+  clientesExistentes.push(novoCliente);
+  return "Cliente cadastrado com sucesso!";
 };
 
 // Função para adicionar um dependente a um cliente
@@ -114,7 +130,6 @@ export const adicionarDependente = async (idCliente: string, dependente: Depende
   }
 
   cliente.dependentes.push(dependente);
-
   return 'Dependente cadastrado com sucesso!';
 };
 
@@ -137,7 +152,6 @@ export const mockEditarCliente = async (id: string, dadosAtualizados: Cliente): 
   }
 
   clientesExistentes[clienteIndex] = { ...clientesExistentes[clienteIndex], ...dadosAtualizados };
-  
   return 'Cliente editado com sucesso!';
 };
 
@@ -146,31 +160,30 @@ export const mockBuscarClientes = async (): Promise<Cliente[]> => {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve(clientesExistentes);
-    }, 500); // Simula um atraso de 500ms
+    }, 500);
   });
 };
 
 // Função para excluir um cliente pelo ID
 export const mockExcluirCliente = async (id: string): Promise<string> => {
-  console.log('ID do Cliente a ser excluído:', id);  // Log do ID recebido
+  console.log('ID do Cliente a ser excluído:', id);
 
   const clienteIndex = clientesExistentes.findIndex(cliente => cliente.id === id);
 
   if (clienteIndex === -1) {
-    console.log('Cliente não encontrado!');  // Log de erro
+    console.log('Cliente não encontrado!');
     return Promise.reject('Cliente não encontrado.');
   }
 
-  console.log('Cliente encontrado:', clientesExistentes[clienteIndex]);  // Log do cliente encontrado
+  console.log('Cliente encontrado:', clientesExistentes[clienteIndex]);
 
-  // Remove o cliente do array
   clientesExistentes.splice(clienteIndex, 1);
-
-  console.log('Clientes após a exclusão:', clientesExistentes);  // Log de clientes restantes
+  console.log('Clientes após a exclusão:', clientesExistentes);
   
   return 'Cliente excluído com sucesso!';
 };
 
+// Exemplo de uso para adicionar um novo dependente
 const novoDependente: Dependente = {
   id: '1.2',
   nome: 'Carlos Silva',
@@ -182,13 +195,53 @@ const novoDependente: Dependente = {
 
 adicionarDependente('1', novoDependente).then(console.log).catch(console.error);
 
-const novoCliente: Cliente = {
-  id: '5',
-  nome: 'Lucca Santos',
-  dataNascimento: '2000-02-28',
-  documento: { tipo: 'CPF', numero: '98765432100' },
-  endereco: 'Rua C, 789',
-  telefone: '(11) 8765-4321'
+// Exemplo de novo cliente substituindo Lucca Santos
+const novoClienteExemplo: Cliente = {
+  id: '6',
+  nome: 'Joaquim Almeida',
+  dataNascimento: '1985-08-20',
+  documento: { tipo: 'CPF', numero: '12309874561' },
+  endereco: 'Rua H, 101',
+  telefone: '(11) 9345-4321'
 };
 
-mockCadastrarCliente(novoCliente).then(console.log).catch(console.error);
+// Função para cadastrar um novo cliente com acomodação
+export const mockCadastrarCliente = async (novoCliente: Cliente): Promise<string> => {
+  const clienteJaExiste = clientesExistentes.some(cliente =>
+    cliente.nome === novoCliente.nome || cliente.documento.numero === novoCliente.documento.numero
+  );
+
+  if (clienteJaExiste) {
+    return Promise.reject('Erro: Cliente já cadastrado com esse nome ou documento.');
+  }
+
+  await new Promise(resolve => setTimeout(resolve, 500));
+
+  clientesExistentes.push(novoCliente);
+  return 'Cadastro concluído com sucesso!';
+};
+
+// Função para associar ou atualizar a acomodação de um cliente existente
+export const atualizarAcomodacaoCliente = async (idCliente: string, acomodacao: AcomodacaoTipo): Promise<string> => {
+  const cliente = clientesExistentes.find(c => c.id === idCliente);
+
+  if (!cliente) {
+    return Promise.reject('Cliente não encontrado.');
+  }
+
+  cliente.acomodacao = acomodacao;
+  return 'Acomodação associada ao cliente com sucesso!';
+};
+
+// Exemplo de uso para adicionar um novo cliente com acomodação
+const novoClienteComAcomodacao: Cliente = {
+  id: '7',
+  nome: 'Carla Mendes',
+  dataNascimento: '1995-07-15',
+  documento: { tipo: 'CPF', numero: '87654321000' },
+  endereco: 'Rua F, 101',
+  telefone: '(11) 9123-4567',
+  acomodacao: 'Família Simples'
+};
+
+mockCadastrarCliente(novoClienteComAcomodacao).then(console.log).catch(console.error);
