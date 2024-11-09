@@ -1,0 +1,82 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .ver-acomodacao {
+    padding: 20px;
+    width: 100%;
+  }
+  
+  .ver-acomodacao h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #201E43;
+  }
+  
+  .ver-acomodacao .campo-pesquisa {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .ver-acomodacao input[type="text"] {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1.5px solid #134B70;
+    border-radius: 8px;
+    background-color: white;
+    color: #201E43;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 10px;
+  }
+  
+  .ver-acomodacao input[type="text"]:focus {
+    border-color: #2C7BB6;
+    outline: none;
+  }
+  
+  .ver-acomodacao button {
+    background-color: #134B70;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 30%;
+    max-width: 200px;
+  }
+  
+  .ver-acomodacao button:hover {
+    background-color: #2C7BB6;
+  }
+  
+  .ver-acomodacao .erro {
+    color: red;
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+  
+  .ver-acomodacao .resultado {
+    margin-top: 20px;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    max-width: 400px; 
+  }
+  
+  .ver-acomodacao .resultado h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #201E43;
+  }
+  
+  .ver-acomodacao .resultado p {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+  

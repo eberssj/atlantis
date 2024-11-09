@@ -1,121 +1,142 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.cadastro-acomodacao {
+  padding: 20px;
+  width: 100%;
+}
+
+.cadastro-acomodacao h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #201E43;
+}
+
+.cadastro-acomodacao .campo-pesquisa {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.cadastro-acomodacao .campo-pesquisa label {
+  font-size: 1.2rem;
+  color: #201E43;
+}
+
+.cadastro-acomodacao .campo-pesquisa input[type="text"] {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1.5px solid #134B70;
+  border-radius: 8px;
+  background-color: white;
+  color: #201E43;
+  width: 100%;
+  max-width: 400px;
+}
+
+.cadastro-acomodacao .campo-pesquisa input[type="text"]:focus {
+  border-color: #2C7BB6;
+  outline: none;
+}
+
+.cadastro-acomodacao .campo-pesquisa button {
+  background-color: #134B70;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 30%;
+  max-width: 200px;
+}
+
+.cadastro-acomodacao .campo-pesquisa button:hover {
+  background-color: #2C7BB6;
+}
+
+.cadastro-acomodacao .erro {
+  color: red;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.cadastro-acomodacao .resultado {
+  margin-top: 20px;
+  padding: 1em;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  max-width: 400px;
+  background-color: #f9f9f9;
+}
+
+.cadastro-acomodacao .resultado h3 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  color: #201E43;
+}
+
+.cadastro-acomodacao .resultado p {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.cadastro-acomodacao .resultado label {
+  font-size: 1.2rem;
+  color: #201E43;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.cadastro-acomodacao .resultado select {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1.5px solid #134B70;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.cadastro-acomodacao .resultado button {
+  background-color: #134B70;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
   
-  .cadastrar-acomodacao {
-    padding: 20px;
-    width: 100%;
-  }
-  
-  .cadastrar-acomodacao h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    color: #201E43;
-  }
-  
-  .cadastrar-acomodacao .campo-selecao {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .cadastrar-acomodacao label {
-    font-size: 1.2em;
-    color: #201E43;
-  }
-  
-  .cadastrar-acomodacao select {
-    padding: 10px;
-    font-size: 1rem;
-    border: 1.5px solid #134B70;
-    border-radius: 8px;
-    background-color: white;
-    color: #201E43;
-    width: 100%;
-    max-width: 400px;
-    margin-bottom: 10px;
-  }
-  
-  .cadastrar-acomodacao select:focus {
-    border-color: #2C7BB6;
-    outline: none;
-  }
-  
-  .cadastrar-acomodacao button.botao-cadastrar {
-    background-color: #134B70;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    font-size: 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    width: 30%;
-    max-width: 200px;
-    margin-top: 10px;
-  }
-  
-  .cadastrar-acomodacao button.botao-cadastrar:hover {
-    background-color: #2C7BB6;
-  }
-  
-  .cadastrar-acomodacao .erro {
-    color: red;
-    font-size: 1rem;
-    margin-top: 10px;
-  }
-  
-  .cadastrar-acomodacao .selecao-cliente,
-  .cadastrar-acomodacao .selecao-acomodacao {
-    margin-top: 20px;
-    padding: 1em;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    max-width: 400px;
-  }
-  
-  .cadastrar-acomodacao .selecao-cliente h3,
-  .cadastrar-acomodacao .selecao-acomodacao h3 {
-    font-size: 1.5em;
-    margin-bottom: 15px;
-    color: #201E43;
-  }
-  
-  .cadastrar-acomodacao .selecao-cliente p,
-  .cadastrar-acomodacao .selecao-acomodacao p {
-    font-size: 1rem;
-    margin-bottom: 8px;
-  }
-  
-  .cadastrar-acomodacao .campo-selecao {
-    margin-top: 10px;
-  }
-  
-  @media (max-width: 600px) {
-    .cadastrar-acomodacao button.botao-cadastrar {
-      width: 100%;
-      max-width: none;
-    }
-  }
-  .cadastrar-acomodacao .popup-mensagem {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%) scale(0.95);
-    background-color: #134B70;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 1.2em;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    opacity: 0;
-    transition: opacity 0.4s ease, transform 0.4s ease;
-  }
-  
-  .cadastrar-acomodacao .popup-mensagem.show {
-    opacity: 1;
-    transform: translateX(-50%) scale(1);
-  }
+  max-width: 200px;
+}
+
+.cadastro-acomodacao .resultado button:hover {
+  background-color: #2C7BB6;
+}
+
+.popup-mensagem {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.95);
+  background-color: #134B70;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1.2em;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.popup-mensagem.show {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}

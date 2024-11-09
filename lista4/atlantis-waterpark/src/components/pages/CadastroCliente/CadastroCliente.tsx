@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Cliente, mockCadastrarCliente } from '../../../services/mockApi';
+import { Cliente, mockCadastrarClienteNovo } from '../../../services/mockApi';
 import './CadastroCliente.css';
 
 interface Dependente {
@@ -49,7 +49,7 @@ const CadastrarCliente: React.FC = () => {
     };
 
     try {
-      const mensagem = await mockCadastrarCliente(cliente);
+      const mensagem = await mockCadastrarClienteNovo(cliente);
       setPopupMensagem(mensagem);
       setShowPopup(true); 
     } catch (erro) {

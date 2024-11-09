@@ -28,7 +28,9 @@ const EditarAcomodacao: React.FC = () => {
   useEffect(() => {
     const carregarClientes = async () => {
       const todosClientes = await mockBuscarClientes();
-      setClientes(todosClientes);
+      // Filtra apenas os clientes que possuem uma acomodação associada
+      const clientesComAcomodacao = todosClientes.filter(cliente => cliente.acomodacao);
+      setClientes(clientesComAcomodacao);
     };
     carregarClientes();
   }, []);

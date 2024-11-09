@@ -195,7 +195,7 @@ const novoDependente: Dependente = {
 
 adicionarDependente('1', novoDependente).then(console.log).catch(console.error);
 
-// Exemplo de novo cliente substituindo Lucca Santos
+
 const novoClienteExemplo: Cliente = {
   id: '6',
   nome: 'Joaquim Almeida',
@@ -205,43 +205,56 @@ const novoClienteExemplo: Cliente = {
   telefone: '(11) 9345-4321'
 };
 
-// Função para cadastrar um novo cliente com acomodação
-export const mockCadastrarCliente = async (novoCliente: Cliente): Promise<string> => {
-  const clienteJaExiste = clientesExistentes.some(cliente =>
-    cliente.nome === novoCliente.nome || cliente.documento.numero === novoCliente.documento.numero
-  );
-
-  if (clienteJaExiste) {
-    return Promise.reject('Erro: Cliente já cadastrado com esse nome ou documento.');
-  }
-
-  await new Promise(resolve => setTimeout(resolve, 500));
-
-  clientesExistentes.push(novoCliente);
-  return 'Cadastro concluído com sucesso!';
-};
-
-// Função para associar ou atualizar a acomodação de um cliente existente
-export const atualizarAcomodacaoCliente = async (idCliente: string, acomodacao: AcomodacaoTipo): Promise<string> => {
+// Função para associar um cliente a uma acomodação
+export const associarAcomodacao = async (idCliente: string, acomodacao: AcomodacaoTipo): Promise<string> => {
   const cliente = clientesExistentes.find(c => c.id === idCliente);
 
   if (!cliente) {
     return Promise.reject('Cliente não encontrado.');
   }
 
+  // Verifica se o cliente já tem uma acomodação associada
+  if (cliente.acomodacao) {
+    return Promise.reject('Esse cliente já possui uma acomodação associada.');
+  }
+
   cliente.acomodacao = acomodacao;
-  return 'Acomodação associada ao cliente com sucesso!';
+  return 'Acomodação associada com sucesso!';
 };
 
-// Exemplo de uso para adicionar um novo cliente com acomodação
-const novoClienteComAcomodacao: Cliente = {
-  id: '7',
-  nome: 'Carla Mendes',
-  dataNascimento: '1995-07-15',
-  documento: { tipo: 'CPF', numero: '87654321000' },
-  endereco: 'Rua F, 101',
-  telefone: '(11) 9123-4567',
-  acomodacao: 'Família Simples'
+export const editarAcomodacao = async (idCliente: string, novaAcomodacao: AcomodacaoTipo): Promise<string> => {
+  const cliente = clientesExistentes.find(c => c.id === idCliente);
+
+  if (!cliente) {
+    return Promise.reject('Cliente não encontrado.');
+  }
+
+  // Se o cliente não tiver acomodação, associa uma nova
+  if (!cliente.acomodacao) {
+    cliente.acomodacao = novaAcomodacao;
+    return 'Acomodação associada com sucesso!';
+  }
+
+  // Se já houver acomodação, apenas edita
+  cliente.acomodacao = novaAcomodacao;
+  return 'Acomodação editada com sucesso!';
 };
 
-mockCadastrarCliente(novoClienteComAcomodacao).then(console.log).catch(console.error);
+// Função para visualizar a acomodação de um cliente
+export const verAcomodacao = async (idCliente: string): Promise<string> => {
+  const cliente = clientesExistentes.find(c => c.id === idCliente);
+
+  if (!cliente) {
+    return Promise.reject('Cliente não encontrado.');
+  }
+
+  if (!cliente.acomodacao) {
+    return Promise.reject('Esse cliente não possui acomodação associada.');
+  }
+
+  return `O cliente ${cliente.nome} está associado à acomodação: ${cliente.acomodacao}`;
+};
+
+
+
+

@@ -10,6 +10,7 @@ import ListarClientes from './components/pages/ListarCliente/ListarCliente';
 
 import CadastrarAcomodacao from './components/pages/CadastrarAcomodacao/CadastrarAcomodacao';
 import EditarAcomodacao from './components/pages/EditarAcomodacao/EditarAcomodacao';
+import VerAcomodacao from './components/pages/VerAcomodação/VerAcomodacao';
 
 const App: React.FC = () => {
   return (
@@ -26,6 +27,7 @@ const App: React.FC = () => {
           
           <Route path="/cadastrar-acomodacao" element={<CadastrarAcomodacao />} />
           <Route path="/editar-acomodacao" element={<EditarAcomodacao />} />
+          <Route path="/ver-acomodacao" element={<VerAcomodacao />} />
         </Routes>
       </div>
     </div>

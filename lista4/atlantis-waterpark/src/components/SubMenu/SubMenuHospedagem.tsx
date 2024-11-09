@@ -20,7 +20,11 @@ const SubMenuHospedagem: React.FC = () => {
           <img src={iconEdicao} alt="Editar Acomodação" className="menu-icon" /> Editar Acomodação
         </Link>
       </li>
-      <li><img src={iconVerHosp} alt="Ver Acomodação" className="menu-icon" /> Ver Acomodação</li>
+      <li>
+        <Link to="/ver-acomodacao">
+          <img src={iconVerHosp} alt="Ver Acomodação" className="menu-icon" /> Ver Acomodação
+        </Link>
+      </li>
       <li><img src={iconExclusao} alt="Exclusão" className="menu-icon" /> Exclusão</li>
       <li><img src={iconListagem} alt="Listagem" className="menu-icon" /> Listagem</li>
     </ul>

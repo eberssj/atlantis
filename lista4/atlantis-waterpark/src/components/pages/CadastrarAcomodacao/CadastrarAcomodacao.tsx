@@ -1,102 +1,106 @@
-import React, { useState, useEffect } from 'react';
-import { Cliente, mockBuscarClientes } from '../../../services/mockApi';
+import React, { useState } from 'react';
+import { mockBuscarCliente, editarAcomodacao, AcomodacaoTipo, associarAcomodacao } from '../../../services/mockApi';
 import './CadastrarAcomodacao.css';
 
-type AcomodacaoTipo = 
-  | 'Casal Simples'
-  | 'Família Simples'
-  | 'Família Mais'
-  | 'Família Super'
-  | 'Solteiro Simples'
-  | 'Solteiro Mais';
+const CadastroAcomodacao: React.FC = () => {
+  const [idCliente, setIdCliente] = useState<string>('');
+  const [acomodacao, setAcomodacao] = useState<string>(''); 
+  const [cliente, setCliente] = useState<any>(null);
+  const [erro, setErro] = useState<string>('');
+  const [popupMensagem, setPopupMensagem] = useState<string>(''); // Estado para o popup
 
-const tiposDeAcomodacao: AcomodacaoTipo[] = [
-  'Casal Simples',
-  'Família Simples',
-  'Família Mais',
-  'Família Super',
-  'Solteiro Simples',
-  'Solteiro Mais',
-];
-
-const CadastrarAcomodacao: React.FC = () => {
-  const [clientes, setClientes] = useState<Cliente[]>([]);
-  const [clienteSelecionado, setClienteSelecionado] = useState<string>('');
-  const [acomodacaoSelecionada, setAcomodacaoSelecionada] = useState<AcomodacaoTipo | ''>('');
-  const [showPopup, setShowPopup] = useState<boolean>(false);
-
-  useEffect(() => {
-    const carregarClientes = async () => {
-      const todosClientes = await mockBuscarClientes();
-      setClientes(todosClientes);
-    };
-    carregarClientes();
-  }, []);
-
-  const handleCadastro = () => {
-    if (clienteSelecionado && acomodacaoSelecionada) {
-      console.log(`Cliente ${clienteSelecionado} associado à acomodação: ${acomodacaoSelecionada}`);
-      setShowPopup(true);
-
-      setTimeout(() => {
-        setShowPopup(false); // Esconde o popup após 3 segundos
-      }, 3000);
-
-      setClienteSelecionado('');
-      setAcomodacaoSelecionada('');
-    } else {
-      alert('Por favor, selecione um cliente e uma acomodação.');
+  const handleBuscarCliente = async () => {
+    try {
+      const clienteEncontrado = await mockBuscarCliente(idCliente);
+      if (clienteEncontrado) {
+        setCliente(clienteEncontrado);
+        setErro('');
+      } else {
+        setCliente(null);
+        setErro('Cliente não encontrado.');
+      }
+    } catch (e) {
+      setErro('Erro ao buscar cliente.');
+      setCliente(null);
     }
   };
 
+  const handleAssociarAcomodacao = async () => {
+    if (cliente && acomodacao) {
+      try {
+        if (!cliente.acomodacao) {
+          // Se o cliente não tem acomodação, associamos uma
+          await associarAcomodacao(cliente.id, acomodacao as AcomodacaoTipo);
+        } else {
+          // Se já tem acomodação, editamos
+          await editarAcomodacao(cliente.id, acomodacao as AcomodacaoTipo);
+        }
+        
+        // Atualizar cliente com a nova acomodação
+        setCliente({ ...cliente, acomodacao });
+        setErro('');
+        setPopupMensagem(`Acomodação associada ao cliente ${cliente.nome}: ${acomodacao}`); // Exibe o popup
+      } catch (e) {
+        setErro('Erro ao associar acomodação ao cliente.');
+      }
+    } else {
+      setErro('Selecione um cliente e uma acomodação.');
+    }
+  };
+
+
+
   return (
-    <div className="cadastrar-acomodacao">
+    <div className="cadastro-acomodacao">
       <h2>Cadastrar Acomodação</h2>
 
-      <div className="campo-selecao">
-        <label htmlFor="cliente">Selecione um Cliente:</label>
-        <select
-          id="cliente"
-          value={clienteSelecionado}
-          onChange={(e) => setClienteSelecionado(e.target.value)}
-          className="select-cliente"
-        >
-          <option value="">-- Selecione um Cliente --</option>
-          {clientes.map(cliente => (
-            <option key={cliente.id} value={cliente.id}>
-              {cliente.nome}
-            </option>
-          ))}
-        </select>
+      <div className="campo-pesquisa">
+        <label htmlFor="idCliente">Digite o ID do Cliente:</label>
+        <input
+          id="idCliente"
+          type="text"
+          value={idCliente}
+          onChange={(e) => setIdCliente(e.target.value)}
+          placeholder="ID do Cliente"
+        />
+        <button onClick={handleBuscarCliente}>Buscar Cliente</button>
       </div>
 
-      <div className="campo-selecao">
-        <label htmlFor="acomodacao">Tipo de Acomodação:</label>
-        <select
-          id="acomodacao"
-          value={acomodacaoSelecionada}
-          onChange={(e) => setAcomodacaoSelecionada(e.target.value as AcomodacaoTipo)}
-          className="select-acomodacao"
-        >
-          <option value="">-- Selecione uma Acomodação --</option>
-          {tiposDeAcomodacao.map((tipo, index) => (
-            <option key={index} value={tipo}>{tipo}</option>
-          ))}
-        </select>
-      </div>
+      {erro && <div className="erro">{erro}</div>}
 
-      <button onClick={handleCadastro} className="botao-cadastrar">
-        Salvar
-      </button>
+      {cliente && !erro && (
+        <div className="resultado">
+          <h3>Cliente: {cliente.nome}</h3>
+          <p>Tipo de Acomodação Atual: {cliente.acomodacao || 'Nenhuma acomodação associada'}</p>
 
-      
-      {showPopup && (
+          <label htmlFor="acomodacao">Escolha a Acomodação:</label>
+          <select 
+            id="acomodacao" 
+            value={acomodacao} 
+            onChange={(e) => setAcomodacao(e.target.value)}>
+            <option value="">Selecione uma acomodação</option>
+            <option value="Casal Simples">Casal Simples</option>
+            <option value="Família Simples">Família Simples</option>
+            <option value="Família Mais">Família Mais</option>
+            <option value="Família Super">Família Super</option>
+            <option value="Solteiro Simples">Solteiro Simples</option>
+            <option value="Solteiro Mais">Solteiro Mais</option>
+          </select>
+
+          <button onClick={handleAssociarAcomodacao}>Associar Acomodação</button>
+
+          
+        </div>
+      )}
+
+      {/* Popup de mensagem */}
+      {popupMensagem && (
         <div className="popup-mensagem show">
-          Acomodação associada ao cliente com sucesso!
+          {popupMensagem}
         </div>
       )}
     </div>
   );
 };
 
-export default CadastrarAcomodacao;
+export default CadastroAcomodacao;
