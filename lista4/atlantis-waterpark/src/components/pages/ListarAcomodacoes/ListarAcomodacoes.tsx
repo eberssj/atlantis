@@ -1,15 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { Cliente, mockBuscarClientes } from '../../../services/mockApi';
-import './ListarAcomodacoes.css'; 
+import './ListarAcomodacoes.css';
+
+type AcomodacaoTipo =
+  | 'Casal Simples'
+  | 'Família Simples'
+  | 'Família Mais'
+  | 'Família Super'
+  | 'Solteiro Simples'
+  | 'Solteiro Mais';
+
+// Definindo a lista de opções de acomodação com base no tipo AcomodacaoTipo
+const tiposDeAcomodacao: AcomodacaoTipo[] = [
+  'Casal Simples',
+  'Família Simples',
+  'Família Mais',
+  'Família Super',
+  'Solteiro Simples',
+  'Solteiro Mais',
+];
 
 const ListarAcomodacao: React.FC = () => {
   const [clientes, setClientes] = useState<Cliente[]>([]);
   const [filtros, setFiltros] = useState({
     id: '',
     nome: '',
-    tipoDocumento: '',
     cidade: '',
   });
+  const [acomodacaoSelecionada, setAcomodacaoSelecionada] = useState<AcomodacaoTipo | "">("");
   const [clientesFiltrados, setClientesFiltrados] = useState<Cliente[]>(clientes);
 
   useEffect(() => {
@@ -30,12 +48,12 @@ const ListarAcomodacao: React.FC = () => {
       return (
         (filtros.id === '' || cliente.id.toLowerCase().includes(filtros.id.toLowerCase())) &&
         (filtros.nome === '' || cliente.nome.toLowerCase().includes(filtros.nome.toLowerCase())) &&
-        (filtros.tipoDocumento === '' || cliente.documento.tipo === filtros.tipoDocumento) &&
-        (filtros.cidade === '' || cliente.endereco.includes(filtros.cidade))
+        (filtros.cidade === '' || cliente.endereco.includes(filtros.cidade)) &&
+        (acomodacaoSelecionada === '' || cliente.acomodacao === acomodacaoSelecionada)
       );
     });
     setClientesFiltrados(filtroClientes);
-  }, [filtros, clientes]);
+  }, [filtros, clientes, acomodacaoSelecionada]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFiltros({
@@ -77,17 +95,19 @@ const ListarAcomodacao: React.FC = () => {
             onChange={handleChange}
             className="filtro-largo"
           />
-          <select
-            name="tipoDocumento"
-            value={filtros.tipoDocumento}
-            onChange={handleChange}
-            className="filtro-pequeno"
-          >
-            <option value="">Filtrar por tipo de documento</option>
-            <option value="CPF">CPF</option>
-            <option value="RG">RG</option>
-            <option value="Passaporte">Passaporte</option>
-          </select>
+          <div className="campo-selecao">
+            <select
+              id="acomodacao"
+              value={acomodacaoSelecionada}
+              onChange={(e) => setAcomodacaoSelecionada(e.target.value as AcomodacaoTipo)}
+              className="select-acomodacao"
+            >
+              <option value="">-- Selecione uma Acomodação --</option>
+              {tiposDeAcomodacao.map((tipo, index) => (
+                <option key={index} value={tipo}>{tipo}</option>
+              ))}
+            </select>
+          </div>
         </div>
       </div>
 
