@@ -50,17 +50,17 @@ const clientesExistentes: Cliente[] = [
   },
   {
     id: '2',
-    nome: 'Maria Oliveira',
-    nomeSocial: 'Maria',
+    nome: 'Livia WhengZhou',
+    nomeSocial: 'Livinha',
     dataNascimento: '1985-05-15',
     documento: { tipo: 'RG', numero: '1234567' },
-    endereco: 'Rua B, 456',
+    endereco: 'China',
     telefone: '(11) 9876-5432'
   },
   {
     id: '3',
-    nome: 'Pedro Souza',
-    nomeSocial: 'Pedro',
+    nome: 'Marca Anthonieta',
+    nomeSocial: 'Marca',
     dataNascimento: '1992-04-30',
     documento: { tipo: 'CPF', numero: '98765432000' },
     endereco: 'Rua D, 123',
@@ -68,8 +68,8 @@ const clientesExistentes: Cliente[] = [
     dependentes: [
       {
         id: '3.1',
-        nome: 'Lucas Souza',
-        nomeSocial: 'Lucas',
+        nome: 'Eber Junior',
+        nomeSocial: 'Eber',
         dataNascimento: '2018-08-25',
         documento: { tipo: 'RG', numero: '12345678' },
         telefone: '(11) 9876-4321'
@@ -78,8 +78,8 @@ const clientesExistentes: Cliente[] = [
   },
   {
     id: '4',
-    nome: 'Laura Costa',
-    nomeSocial: 'Laura',
+    nome: 'Heleno Narraba',
+    nomeSocial: 'Heleninho',
     dataNascimento: '1988-12-12',
     documento: { tipo: 'RG', numero: '2345678' },
     endereco: 'Rua E, 789',
