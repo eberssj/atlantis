@@ -2,7 +2,7 @@
 
 ```bash
 # Entrar na pasta da lista 1
-cd lista1\atvi-atlantis
+cd atlantis/lista1/atvi-atlantis
 
 # Instalar as dependências
 npm install
