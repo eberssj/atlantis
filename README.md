@@ -1,12 +1,12 @@
 ## Como Executar:
 
 ```bash
-# Entrar na pasta da lista 1
-cd lista1\atvi-atlantis
+# Entrar na pasta da lista 4
+cd atlantis/lista4/atlantis-waterpark/src
 
 # Instalar as dependências
 npm install
 npx tsc
 
 # Executar o projeto
-node .\js\teste\index.js
+npm start
