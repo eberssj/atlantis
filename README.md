@@ -2,7 +2,7 @@
 
 ```bash
 # Entrar na pasta da lista 2
-cd lista2\atvii-atlantis
+cd lista2/atvii-atlantis
 
 # Instalar as dependências
 npm install
