@@ -2,11 +2,12 @@
 
 ```bash
 # Entrar na pasta da lista 3
-cd lista3\atviii-atlantis
+cd lista3/atviii-atlantis/src
 
 # Instalar as dependências
 npm install
 npx tsc
 
 # Executar o projeto
-node .\src\js\app\app.js
+node js/app/app.js
+
